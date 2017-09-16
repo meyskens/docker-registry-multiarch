@@ -6,7 +6,7 @@ RUN apt-get -y install git wget tar build-essential
 
 ARG arch
 ARG go_arch
-ARG registry_version=v2.6.2
+ARG registry_version
 ARG go_version=1.9
 
 #Install golang
@@ -15,7 +15,7 @@ ENV GOPATH /go
 ENV PATH $PATH:/usr/local/go/bin:$GOPATH/bin
 
 # Install registry
-RUN git clone https://github.com/docker/distribution.git -b ${registry_version} /go/src/github.com/docker/distribution &&\
+RUN git clone https://github.com/docker/distribution.git -b v${registry_version} /go/src/github.com/docker/distribution &&\
     cd /go/src/github.com/docker/distribution/ &&\
     go get &&\
     make PREFIX=/go clean binaries &&\
